@@ -1,40 +1,30 @@
 import { Card } from "antd";
 import { useState } from "react";
-import {Auth} from './components/partial views/Authorizatuion'
-import { Reg } from "./components/partial views/Registration";
+import {SignIn} from './components/partial views/SignIn'
+import { SignUp } from "./components/partial views/SignUp";
 
 let tabs = [
     {
-        key: 'auth',
-        tab: 'Authorization'
+        key: 'in',
+        tab: 'Sign In'
     },
     {
-        key: 'reg',
-        tab: 'Registration'
+        key: 'up',
+        tab: 'Sign Up'
     }
 ]
 let parts = {
-    auth: <Auth />,
-    reg: <Reg />
-}
-let authCardStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh'
+    in: <SignIn />,
+    up: <SignUp />
 }
 export const Main = () => {
-    const [activeKey, setActiveKey] = useState('auth')
+    const [activeKey, setActiveKey] = useState('in')
     const onChange = (key) =>{
         setActiveKey(key)
     }
     return (
-        <div style={authCardStyle}>
-           <Card
-           style={{
-                alignSelf: 'center',
-                justifySelf: 'center'
-           }}
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
+            <Card
             title="Web Engine"
             tabList={tabs}
             activeTabKey={activeKey}
@@ -43,5 +33,6 @@ export const Main = () => {
             {parts[activeKey]}
            </Card>
         </div>
+           
     ); 
 }
