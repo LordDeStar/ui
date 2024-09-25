@@ -1,10 +1,15 @@
 import { Button, Form, Input, Typography } from "antd"
-
+import { useDispatch } from "react-redux"
+import { signUp } from "../../store/slices/userSlice"
 export const SignUp = ()=>{
     const {Title, Text} = Typography
+    const dispatch = useDispatch()
+    const finish = (data)=>{
+        dispatch(signUp(data))
+    }
     return (
         <>
-            <Form>
+            <Form onFinish={finish}>
                 <Form.Item>
                     <Title level={4}>Please provide your email address and phone number. </Title>
                     <Text>We will contact you and then generate a key.</Text>
@@ -18,6 +23,7 @@ export const SignUp = ()=>{
                 <Form.Item>
                     <Button
                         type="primary"
+                        htmlType="submit"
                     >Sign Up</Button>
                 </Form.Item>
             </Form>
