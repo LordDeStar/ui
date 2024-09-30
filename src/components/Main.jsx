@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import { useState } from "react";
-import {SignIn} from './components/partial views/SignIn'
-import { SignUp } from "./components/partial views/SignUp";
+import {SignIn} from './partial views/SignIn'
+import { SignUp } from "./partial views/SignUp";
 
 let tabs = [
     {
