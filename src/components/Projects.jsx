@@ -9,7 +9,7 @@ const {Title} = Typography
 export const Projects = ()=>{
   const dispatch = useDispatch()
   const projects = useSelector(state => state.project.projects)
-  let isLoading = useSelector(state => state.project.loading)
+  const [isLoading, setIsLoading] = useState(false)
   const user = useSelector(state=>state.user.current)
   const [title, setTitle] = useState("Loading...") 
   const [items, setItems] = useState([])
@@ -18,20 +18,17 @@ export const Projects = ()=>{
   useEffect(()=>{
     dispatch(fetchProjects(user.Id))
   }, [])
-  // loading anim
   useEffect(()=>{
-    if (!isLoading){
-      setTitle('Your projects')
-      setItems(projects)
-    }
-    else{
-      dispatch(fetchProjects(user.Id))
-    }
-  }, [isLoading])
+    dispatch(fetchProjects(user.Id))
+    setTitle('Your projects')
+    setItems(projects)
+    setIsLoading(false)
+  }, [isLoading, dispatch, projects, user])
 
   const okHandler = ()=>{
     dispatch(createProject({title: inputValue, id: user.Id}))
     setIsModalVisible(false)
+    setIsLoading(true)
   }
   const cancelHandler = ()=>{
     setIsModalVisible(false)
@@ -52,7 +49,7 @@ export const Projects = ()=>{
       <div style={{marginLeft:'10%', marginTop:'10%'}}>
         <Button 
         type="primary"
-        onClick={()=>{isLoading = true; setIsModalVisible(true)}}
+        onClick={()=>{ setIsModalVisible(true)}}
         >Create new project</Button>
       </div>
     </div>
