@@ -20,7 +20,7 @@ export const createProject = createAsyncThunk(
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ title: data.title, userId: data.id }),
+			body: JSON.stringify({ title: data.title, userId: data.id, description: data.description }),
 		})
 		if (response.ok) {
 			return await response.json()
