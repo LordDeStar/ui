@@ -5,6 +5,7 @@ import { Projects } from './components/Projects'
 import { Provider } from 'react-redux'
 import store from './store'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Editor } from './components/Editor'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -14,6 +15,7 @@ root.render(
 				<Routes>
 					<Route path='/' element={<Main />} />
 					<Route path='/projects' element={<Projects />} />
+					<Route path='/editor' element={<Editor />} />
 					<Route path='*' element={<Main />} />
 				</Routes>
 			</BrowserRouter>
